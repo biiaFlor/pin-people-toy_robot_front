@@ -1,0 +1,232 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /* The Modal (background) */
+.modalAjuda {
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #353535;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #353535;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.icone {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.icone:hover,
+.icone:focus {
+  color: #929292;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iconeProximo{
+  padding: 0!important;
+    margin-top: -2% !important;
+}
+
+.conteudoModal{
+  color: #fff;
+  margin: 5%
+}
+
+h3{
+  color: #fff;
+}
+
+ img{
+  /*Imagem utilizada: https://pixabay.com/pt/vectors/android-artificiais-doodle-rob%C3%B4-159109/ */
+  width: 40%;
+  padding: 0;
+  margin: 0;
+}
+
+/*.east, .north, .west, .south{
+} */
+
+.north{ /*Cima */
+  transform:rotate(-55deg);
+}
+ .south{ /*Baixo */
+  transform: rotate(-55deg) scaleX(-1);
+}
+.west{/*Esquerda */
+    transform: rotate(25deg) scaleX(-1) !important;
+}
+.east{/*Direita */
+  transform:rotate(-10deg);
+}
+
+@media screen and (max-device-width: 1024px){
+	img {
+		width: 65%;
+  }
+  td,tr,th{
+    border: 1px solid #353535;
+    text-align: center !important;
+    width: 2rem !important;
+    height: 3rem!important;
+  }
+}
+
+@media screen and (min-device-width: 1440px){
+	img {
+		width: 45%;
+  }
+}
+
+td,tr,th{
+  border: 1px solid #353535;
+  text-align: center !important;
+  width: 2rem !important;
+  height: 5rem;
+}
+
+.material-icons{
+  color: #fff;
+  padding: 2%;
+}
+
+.navbar {
+    /* background-color: #2972db; */
+    background-color: #424242;
+    /* background-color: transparent; */
+    overflow: hidden;
+    -webkit-box-shadow: 2px 7px 5px rgba(50, 50, 50, 0.77);
+    -moz-box-shadow:    9px 7px 5px rgba(50, 50, 50, 0.77);
+    box-shadow:         9px 7px 5px rgba(50, 50, 50, 0.77);
+    border:none;
+  }
+  
+  .navbar a, .navbar p {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 1%;
+    margin: 2%;
+  }
+
+  .navbar a {
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .navbar p {
+    font-size: 24px;
+    margin: 0;
+    margin-top: 1%;
+  }
+
+  .body {
+    margin: 0;
+    /* background-image: linear-gradient(to bottom, #598bdc, #fff, #598bdc) !important; */
+    background-image: url("../assets/fundo.jpg");
+    /* imagem retirada de: https://wallpapercave.com/w/wp1816252  */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    position: relative !important;
+    display: grid !important;
+    min-height: max-content !important;
+    height: -webkit-fill-available !important;
+}
+
+  .cabecalho{
+    height: 3%;
+  }
+
+  .conteudo{
+    margin: 1%;
+    text-align: -webkit-center;
+  }
+
+  .ajuda{
+    display: flex;
+    float: right;
+    margin: 2%;
+  }
+
+  table{
+    width: 50% !important;
+    height: 90% !important;
+    margin: 2% !important;
+    border-collapse: collapse !important;
+    padding: 2% !important;
+    border-radius: 30px !important;
+    border-style: hidden !important; 
+    box-shadow: 0px 0px 5px #424242 !important; 
+    /* background-color: transparent; */
+    background-color: #424242;
+  }
+
+  input, input:hover, input:active{
+    padding: 0.5%;
+    display: inline-block;
+    /* border: 1px solid #ccc; */
+    color: #fff;
+    background-color: #424242;
+    border: 1px solid #424242 !important;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .opcoes{
+    text-align: center;
+    margin: 2%;
+  }
+
+  
+.botaoGO {
+    /* background-color: #17a2b8; */
+    background-color: #353535;
+    color: white;
+    padding: 0.5%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  select {
+    padding: 0.5%;
+    border: none;
+    border-radius: 4px;
+    /* background-color: #fff; */
+    background-color: #424242;
+    /* color: #000; */
+    color: #fff;
+  }
+
+  .botaoAjuda, .botaoAjuda:active{
+    background-color: transparent;
+    border: none;
+  }

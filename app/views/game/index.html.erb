@@ -1,0 +1,86 @@
+<div class="cabecalho">
+    <div class="navbar">
+        <p>Robot Toy</p>
+        <div class="ajuda">
+            <button class="botaoAjuda" id="botaoAjuda" onclick="exibeAjuda()">
+                <span class="material-icons">
+                    help_outline
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <div id="modalAjuda" class="modalAjuda">
+            <div class="modal-content">
+                <span class="icone iconeFechar">&times;</span>
+                <p>
+                    <h3> Bem vindo(a) ao Robot Toy! </h3>
+                    <p class = "conteudoModal">
+                    Eva está livre para vagar pela superfície demonstrada, mas é impedida de cair e se destruir. 
+                    Qualquer movimento que resulte em sua queda é evitado, no entanto, 
+                    outros comandos de movimento válidos são permitidos.
+                    </p>
+                <span class="material-icons icone iconeProximo">arrow_right_alt</span>
+                </p>
+            </div>
+
+        </div>
+        <div class="opcoes">
+            <%= form_tag game_path, method: :put do %>
+            <%= hidden_field_tag :current_line, @game.position_line %>
+            <%= hidden_field_tag :current_column, @game.position_column %>
+            <%= hidden_field_tag :current_orientation, @game.facing %>
+            <%= select_tag :command, options_for_select(game_commands_options), onchange: 'changeCommandSelect(this)' %>
+            <%= text_field_tag :place %>
+            <button class="botaoGO" id="">GO!</button>
+            <% end %>
+        </div>
+        <div>
+            <div class="erro">
+                <% if @error %>
+                <h3><%= @error %></h3>
+                <% end %>
+            </div>
+        </div>
+        <table>
+            <% @game.board_width.times do |line_index| %>
+            <tr>
+                <% @game.board_height.times do |column_index| %>
+                <td>
+                    <%= image_tag('eva.png', class: @game.facing.to_s.downcase) if robot_place? @game, line_index, column_index %>
+                </td>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
+
+<script>
+    function changeCommandSelect(element) {
+        const place_field = document.getElementById('place');
+        if (element.value === '1') {
+            place_field.style.display = 'inline-block';
+        } else {
+            place_field.style.display = 'none';
+        }
+    }
+
+    var modal = document.getElementById("modalAjuda");
+    var btn = document.getElementById("botaoAjuda");
+
+    var span = document.getElementsByClassName("icone")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
