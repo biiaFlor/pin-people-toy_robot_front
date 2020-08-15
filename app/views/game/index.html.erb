@@ -14,15 +14,11 @@
         <div id="modalAjuda" class="modalAjuda">
             <div class="modal-content">
                 <span class="icone iconeFechar">&times;</span>
-                    <h3 id = "tituloAjuda"> Bem vindo(a) ao Robot Toy! </h3>
-                    <p class="conteudoModal" id = "textoAjuda">
-                        Eva está livre para vagar pela superfície demonstrada, mas é impedida de cair e se destruir.
-                        Qualquer movimento que resulte em sua queda é evitado, no entanto,
-                        outros comandos de movimento válidos são permitidos.
-                    </p>
-                    <span class="material-icons icone iconeProximo" onclick="iconeAjuda()">arrow_right_alt</span>
+                    <h3 id = "tituloAjuda">  </h3>
+                    <p class="conteudoModal" id = "textoAjuda"> </p>
+                    <p id = "iconeProximo"></p>
+                    <p id = "iconeVoltar"></p>
             </div>
-
         </div>
         <div class="opcoes">
             <%= form_tag game_path, method: :put do %>
@@ -34,14 +30,20 @@
             <button class="botaoGO" id="">GO!</button>
             <% end %>
         </div>
-        <% if @error %>
+        <% @error %>
         
-        <div>
+        <%
+=begin%>
+ <div class = "modalAjuda" id="modalErro">
+            <%= if @error ? modalErro(@error) %>
             <div class="erro">
-                <h3><%= @error %></h3>
+                <span class="icone iconeFechar">&times;</span>
+                    <p class="conteudoModal" id = "textoErro"> </p>
             </div>
-        </div>
-        <% end %>
+        </div> 
+<%
+=end%>
+            <% end %>
         <table>
             <% @game.board_width.times do |line_index| %>
             <tr>
@@ -66,29 +68,87 @@
         }
     }
 
-    var modal = document.getElementById("modalAjuda");
-    var btn = document.getElementById("botaoAjuda");
+    var modalAjuda = document.getElementById("modalAjuda");
+    var botaoAjuda = document.getElementById("botaoAjuda");
+    var icone = document.getElementsByClassName("icone")[0];
 
-    var span = document.getElementsByClassName("icone")[0];
-
-    btn.onclick = function() {
-        modal.style.display = "block";
+    function modalErro(mensagem){
+        modalErro.style.display = "block";
+        document.getElementById("textoErro").innerHTML = mensagem;
     }
 
-    span.onclick = function() {
-        modal.style.display = "none";
+    botaoAjuda.onclick = function() {
+        modalAjuda.style.display = "block";
+        iconeAjuda(1);
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    icone.onclick = function() {
+        modalAjuda.style.display = "none";
+    }
+
+    function iconeAjuda(id){        
+        switch (id) {
+            case 1:
+                document.getElementById("tituloAjuda").innerHTML = tituloAjuda1;
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda1;
+                document.getElementById("iconeProximo").innerHTML = iconeProximo1;
+                document.getElementById("iconeVoltar").innerHTML = "";
+                break;
+
+            case 2:
+                document.getElementById("tituloAjuda").innerHTML = tituloAjuda2;
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda2;
+                document.getElementById("iconeVoltar").innerHTML = iconeVoltar1;
+                document.getElementById("iconeProximo").innerHTML = iconeProximo2;
+            break;
+
+            case 3:
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda3;
+                document.getElementById("iconeVoltar").innerHTML = iconeVoltar2;
+                document.getElementById("iconeProximo").innerHTML = "";
+            break;
+            default:
+                break;
         }
     }
 
-    function iconeAjuda(){
-        document.getElementById("tituloAjuda").innerHTML = "Comandos para movimentar Eva:";
-        document.getElementById("textoAjuda").innerHTML = "<p>" + 
-        "\n" +
+    const tituloAjuda1 = "Bem vindo(a) ao Robot Toy!";
+    const conteudoAjuda1 = "Eva está livre para passear pela plataforma, pois é impedida de cair e se perder no espaço. " +
+                        "Qualquer movimento que resulte em sua queda é evitado, no entanto, " +
+                        "outros comandos de movimento válidos são permitidos.";
+                        
+    const tituloAjuda2 = "Comandos para movimentar Eva:";
+    const conteudoAjuda2 = 
+        "<p>" + 
+            "<ul>" +
+                "<li>" +
+                    "<span class = \"negrito\">Place</span>: indica na plataforma a posição de Eva.\n" +
+                "</li>" +
+                    "<ul>" +
+                        "<li>" +
+                            "Utilize as coordenadas X, Y para indicar sua primeira posição na e "+ 
+                            "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angula na qual ela andará.\n\n" +
+                        "</li>" +                        
+                        "<li>" +
+                            "O aplicativo descartará todos os comandos na sequência até que um comando \"Place\" válido seja executado.\n\n" +
+                        "</li>" +
+                    "</ul>" +
+            "</ul>" +
         "</p>";
-    }
+    
+    const conteudoAjuda3 = 
+        "<p>" + 
+            "<ul>" +
+                "<li>" +
+                    "<span class = \"negrito\">Move</span>: Moverá Eva para a direção que ela estiver voltada.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "<span class = \"negrito\">Left e Right</span>: Girará Eva 90 graus na direção especificada sem alterar sua posição.\n\n" +
+                "</li>" +
+            "</ul>" +
+        "</p>";
+    const iconeProximo1 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(2)\">arrow_right_alt</span>";
+    const iconeProximo2 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(3)\">arrow_right_alt</span>";
+    const iconeVoltar1 = " <span class=\"material-icons icone iconeVoltar\" onclick=\"iconeAjuda(1)\">arrow_right_alt</span>";
+    const iconeVoltar2 = " <span class=\"material-icons icone iconeVoltar\" onclick=\"iconeAjuda(2)\">arrow_right_alt</span>";
 </script>
