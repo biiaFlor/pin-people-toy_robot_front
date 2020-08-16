@@ -14,10 +14,10 @@
         <div id="modalAjuda" class="modalAjuda">
             <div class="modal-content">
                 <span class="icone iconeFechar">&times;</span>
-                    <h3 id = "tituloAjuda">  </h3>
-                    <p class="conteudoModal" id = "textoAjuda"> </p>
-                    <p id = "iconeProximo"></p>
-                    <p id = "iconeVoltar"></p>
+                <h3 id="tituloAjuda"> </h3>
+                <p class="conteudoModal" id="textoAjuda"> </p>
+                <p id="iconeProximo"></p>
+                <p id="iconeVoltar"></p>
             </div>
         </div>
         <div class="opcoes">
@@ -30,20 +30,6 @@
             <button class="botaoGO" id="">GO!</button>
             <% end %>
         </div>
-        <% @error %>
-        
-        <%
-=begin%>
- <div class = "modalAjuda" id="modalErro">
-            <%= if @error ? modalErro(@error) %>
-            <div class="erro">
-                <span class="icone iconeFechar">&times;</span>
-                    <p class="conteudoModal" id = "textoErro"> </p>
-            </div>
-        </div> 
-<%
-=end%>
-            <% end %>
         <table>
             <% @game.board_width.times do |line_index| %>
             <tr>
@@ -72,11 +58,6 @@
     var botaoAjuda = document.getElementById("botaoAjuda");
     var icone = document.getElementsByClassName("icone")[0];
 
-    function modalErro(mensagem){
-        modalErro.style.display = "block";
-        document.getElementById("textoErro").innerHTML = mensagem;
-    }
-
     botaoAjuda.onclick = function() {
         modalAjuda.style.display = "block";
         iconeAjuda(1);
@@ -84,9 +65,10 @@
 
     icone.onclick = function() {
         modalAjuda.style.display = "none";
+        modalErro.style.display = "none";
     }
 
-    function iconeAjuda(id){        
+    function iconeAjuda(id) {
         switch (id) {
             case 1:
                 document.getElementById("tituloAjuda").innerHTML = tituloAjuda1;
@@ -100,13 +82,13 @@
                 document.getElementById("textoAjuda").innerHTML = conteudoAjuda2;
                 document.getElementById("iconeVoltar").innerHTML = iconeVoltar1;
                 document.getElementById("iconeProximo").innerHTML = iconeProximo2;
-            break;
+                break;
 
             case 3:
                 document.getElementById("textoAjuda").innerHTML = conteudoAjuda3;
                 document.getElementById("iconeVoltar").innerHTML = iconeVoltar2;
                 document.getElementById("iconeProximo").innerHTML = "";
-            break;
+                break;
             default:
                 break;
         }
@@ -114,38 +96,38 @@
 
     const tituloAjuda1 = "Bem vindo(a) ao Robot Toy!";
     const conteudoAjuda1 = "Eva está livre para passear pela plataforma, pois é impedida de cair e se perder no espaço. " +
-                        "Qualquer movimento que resulte em sua queda é evitado, no entanto, " +
-                        "outros comandos de movimento válidos são permitidos.";
-                        
+        "Qualquer movimento que resulte em sua queda é evitado, no entanto, " +
+        "outros comandos de movimento válidos são permitidos.";
+
     const tituloAjuda2 = "Comandos para movimentar Eva:";
-    const conteudoAjuda2 = 
-        "<p>" + 
-            "<ul>" +
-                "<li>" +
-                    "<span class = \"negrito\">Place</span>: indica na plataforma a posição de Eva.\n" +
-                "</li>" +
-                    "<ul>" +
-                        "<li>" +
-                            "Utilize as coordenadas X, Y para indicar sua primeira posição na e "+ 
-                            "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angula na qual ela andará.\n\n" +
-                        "</li>" +                        
-                        "<li>" +
-                            "O aplicativo descartará todos os comandos na sequência até que um comando \"Place\" válido seja executado.\n\n" +
-                        "</li>" +
-                    "</ul>" +
-            "</ul>" +
+    const conteudoAjuda2 =
+        "<p>" +
+        "<ul>" +
+        "<li>" +
+        "<span class = \"negrito\">Place</span>: indica na plataforma a posição de Eva.\n" +
+        "</li>" +
+        "<ul>" +
+        "<li>" +
+        "Utilize as coordenadas X, Y para indicar sua primeira posição na e " +
+        "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angula na qual ela andará.\n\n" +
+        "</li>" +
+        "<li>" +
+        "O aplicativo descartará todos os comandos na sequência até que um comando \"Place\" válido seja executado.\n\n" +
+        "</li>" +
+        "</ul>" +
+        "</ul>" +
         "</p>";
-    
-    const conteudoAjuda3 = 
-        "<p>" + 
-            "<ul>" +
-                "<li>" +
-                    "<span class = \"negrito\">Move</span>: Moverá Eva para a direção que ela estiver voltada.\n\n" +
-                "</li>" +
-                "<li>" +
-                    "<span class = \"negrito\">Left e Right</span>: Girará Eva 90 graus na direção especificada sem alterar sua posição.\n\n" +
-                "</li>" +
-            "</ul>" +
+
+    const conteudoAjuda3 =
+        "<p>" +
+        "<ul>" +
+        "<li>" +
+        "<span class = \"negrito\">Move</span>: Moverá Eva para a direção que ela estiver voltada.\n\n" +
+        "</li>" +
+        "<li>" +
+        "<span class = \"negrito\">Left e Right</span>: Girará Eva 90 graus na direção especificada sem alterar sua posição.\n\n" +
+        "</li>" +
+        "</ul>" +
         "</p>";
     const iconeProximo1 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(2)\">arrow_right_alt</span>";
     const iconeProximo2 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(3)\">arrow_right_alt</span>";
