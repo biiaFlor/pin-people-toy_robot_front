@@ -1,22 +1,4 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
- /* The Modal (background) */
-.modalAjuda {
-  display: none;
+.modais{
   position: fixed; 
   z-index: 1;
   left: 0;
@@ -25,38 +7,29 @@
   height: 100%; 
   overflow: auto; 
   background-color: rgba(0,0,0,0.5);
+}
+
+.modalAjuda {
+  display: none;
 }
 
 .modalErro {
   display: block;
-  position: fixed; 
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.5);
 }
 
-.trasicao{
-  transition: all 1s linear;
-}
-
-.modal-contentAjuda {
+.conteudoModais {
   background-color: #353535;
+  padding: 2%;
+  border: 1px solid #353535;
+  width: 50%;
+}
+
+.conteudoModalAjuda {
   margin: 5% auto;
-  padding: 2%;
-  border: 1px solid #353535;
-  width: 50%;
 }
 
-.modal-contentErro {
-  background-color: #353535;
+.conteudoModalErro {
   margin: 10% auto;
-  padding: 2%;
-  border: 1px solid #353535;
-  width: 50%;
 }
 
 .icone {
@@ -64,6 +37,8 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  padding: 0!important;
+  margin-top: -2% !important;
 }
 
 .icone:hover,
@@ -73,14 +48,7 @@
   cursor: pointer;
 }
 
-.iconeProximo{
-  padding: 0!important;
-    margin-top: -2% !important;
-}
-
 .iconeVoltar{
-  padding: 0!important;
-  margin-top: -2% !important;
   float: left;
   transform: scaleX(-1)
 }
@@ -101,9 +69,6 @@ h3{
   margin: 0;
 }
 
-/*.east, .north, .west, .south{
-} */
-
 .north{ /*Cima */
   transform:rotate(-55deg);
 }
@@ -118,24 +83,16 @@ h3{
 }
 
 @media screen and (max-device-width: 425px){
-  .modal-contentAjuda{
+  .conteudoModalAjuda{
     width: 90%;
   }
   
-  .modal-contentErro{
+  .conteudoModalErro{
     width: 90%;
     margin: 50% auto;
   }
   
-  input, input:hover, input:active{
-    font-size: initial !important;
-  }
-  
-  .botaoGO {
-    font-size: initial !important;
-  }
-
-  select {
+  input, input:hover, input:active, select, .botaoGO {
     font-size: initial !important;
   }
 
@@ -177,7 +134,7 @@ td,tr,th{
   padding: 2%;
 }
 
-.navbar {
+  .navbar {
     background-color: #424242;
     overflow: hidden;
     -webkit-box-shadow: 2px 7px 5px rgba(50, 50, 50, 0.77);
@@ -243,7 +200,7 @@ td,tr,th{
     padding: 2% !important;
     border-radius: 30px !important;
     border-style: hidden !important; 
-    box-shadow: 0px 0px 5px #424242 !important; 
+    box-shadow: 0 0 0.5rem #424242 !important; 
     background-color: #424242;
   }
 
@@ -253,7 +210,7 @@ td,tr,th{
     color: #fff;
     background-color: #424242;
     border: 1px solid #424242 !important;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     box-sizing: border-box;
     font-family: cursive;
     font-size: large;
@@ -270,7 +227,7 @@ td,tr,th{
     color: white;
     padding: 0.5%;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     cursor: pointer;
     font-family: cursive;
     font-size: large;
@@ -279,7 +236,7 @@ td,tr,th{
   select {
     padding: 0.5%;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     background-color: #424242;
     color: #fff;
     font-family: cursive;
@@ -306,12 +263,12 @@ td,tr,th{
   
   .tooltip .textoTooltip {
     visibility: hidden;
-    width: 150px;
+    width: 5rem;
     background-color: #353535;
     color: #fff;
     text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    border-radius: 0.2rem;
+    padding: 15% 0;
     position: absolute;
     z-index: 1;
     top: 1%;
@@ -323,8 +280,8 @@ td,tr,th{
     position: absolute;
     top: 50%;
     left: 100%;
-    margin-top: -5px;
-    border-width: 5px;
+    margin-top: -0.5rem;
+    border-width: 0.5rem;
     border-style: solid;
     border-color: transparent transparent transparent #353535;
   }

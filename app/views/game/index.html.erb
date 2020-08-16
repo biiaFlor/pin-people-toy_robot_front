@@ -14,8 +14,8 @@
     </div>
 
     <div class="conteudo">
-        <div id="modalAjuda" class="modalAjuda">
-            <div class="modal-contentAjuda">
+        <div id="modalAjuda" class="modalAjuda modais">
+            <div class="conteudoModais conteudoModalAjuda">
                 <span class="icone iconeFechar">&times;</span>
                 <h3 id="tituloAjuda"> </h3>
                 <p class="conteudoModal" id="textoAjuda"> </p>
@@ -25,8 +25,8 @@
         </div>
         <div id = "divErro">
             <% if @error%>
-                <div class="modalErro" id="modalErro">
-                    <div class="modal-contentErro">
+                <div class="modalErro modais" id="modalErro">
+                    <div class="conteudoModais conteudoModalErro">
                         <div class="erro" id = "erro">
                             <span class="icone iconeFechar" onclick = "fechaModalErro()">&times;</span>
                             <h3 id="tituloAjuda"><%= @error %></h3>
@@ -42,7 +42,7 @@
             <%= hidden_field_tag :current_orientation, @game.facing %>
             <%= select_tag :command, options_for_select(game_commands_options), onchange: 'changeCommandSelect(this)' %>
             <%= text_field_tag :place, nil, placeholder: 'Exemplo: 4,4,east' %>
-            <button class="botaoGO" id="">GO!</button>
+            <button class="botaoGO">GO!</button>
             <% end %>
         </div>
         <table>
