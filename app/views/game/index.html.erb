@@ -20,16 +20,18 @@
                 <p id="iconeVoltar"></p>
             </div>
         </div>
-        <% if @error%>
-            <div class="modalErro" id="modalErro">
-                <div class="modal-content">
-                    <div class="erro" id = "erro">
-                        <span class="icone iconeFechar">&times;</span>
-                        <h3 id="tituloAjuda"><%= @error %></h3>
+        <div id = "divErro">
+            <% if @error%>
+                <div class="modalErro" id="modalErro">
+                    <div class="modal-content">
+                        <div class="erro" id = "erro">
+                            <span class="icone iconeFechar" onclick = "fechaModalErro()">&times;</span>
+                            <h3 id="tituloAjuda"><%= @error %></h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
+            <% end %>
+        </div>
         <div class="opcoes">
             <%= form_tag game_path, method: :put do %>
             <%= hidden_field_tag :current_line, @game.position_line %>
@@ -77,6 +79,10 @@
         modalAjuda.style.display = "none";
     }
 
+    function fechaModalErro(){
+        modalErro.style.display = "none";
+    }
+
     function iconeAjuda(id) {
         switch (id) {
             case 1:
@@ -112,18 +118,21 @@
     const conteudoAjuda2 =
         "<p>" +
         "<ul>" +
-        "<li>" +
-        "<span class = \"negrito\">Place</span>: indica na plataforma a posição de Eva.\n" +
-        "</li>" +
-        "<ul>" +
-        "<li>" +
-        "Utilize as coordenadas X, Y para indicar sua primeira posição na e " +
-        "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angula na qual ela andará.\n\n" +
-        "</li>" +
-        "<li>" +
-        "O aplicativo descartará todos os comandos na sequência até que um comando \"Place\" válido seja executado.\n\n" +
-        "</li>" +
-        "</ul>" +
+            "<li>" +
+                "<span class = \"negrito\">Place</span>: indica a posição de Eva na plataforma.\n" +
+            "</li>" +
+            "<ul>" +
+                "<li>" +
+                    "Utilize as coordenadas X, Y para indicar sua primeira posição e " +
+                    "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angulo no qual ela andará.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "O aplicativo descartará todos os comandos até que um comando \"Place\" válido seja executado.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "Exemplo: 4,4,east.\n\n" +
+                "</li>" +
+            "</ul>" +
         "</ul>" +
         "</p>";
 
