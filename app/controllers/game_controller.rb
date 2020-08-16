@@ -33,9 +33,4 @@ class GameController < ApplicationController
     @error = error.message
     render 'index'
   end
-
-  def erro_empty
-    @error = ""
-    render 'index'
-  end
 end
