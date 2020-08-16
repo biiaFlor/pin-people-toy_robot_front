@@ -110,6 +110,31 @@ h3{
   transform:rotate(-10deg);
 }
 
+@media screen and (max-device-width: 425px){
+  .modal-content{
+    width: 90%;
+  }
+  
+  input, input:hover, input:active{
+    font-size: initial !important;
+  }
+  
+  .botaoGO {
+    font-size: initial !important;
+  }
+
+  select {
+    font-size: initial !important;
+  }
+
+  .iconeProximo, .iconeVoltar {
+    margin-top: -5% !important;
+  }
+  table {
+    width: 90% !important;
+  }
+}
+
 @media screen and (max-device-width: 1024px){
 	img {
 		width: 65%;
@@ -199,7 +224,7 @@ td,tr,th{
   }
 
   table{
-    width: 50% !important;
+    width: 50%;
     height: 90% !important;
     margin: 2% !important;
     border-collapse: collapse !important;

@@ -20,6 +20,18 @@
                 <p id="iconeVoltar"></p>
             </div>
         </div>
+        <div id = "divErro">
+            <% if @error%>
+                <div class="modalErro" id="modalErro">
+                    <div class="modal-content">
+                        <div class="erro" id = "erro">
+                            <span class="icone iconeFechar" onclick = "fechaModalErro()">&times;</span>
+                            <h3 id="tituloAjuda"><%= @error %></h3>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
         <div class="opcoes">
             <%= form_tag game_path, method: :put do %>
             <%= hidden_field_tag :current_line, @game.position_line %>
@@ -65,6 +77,9 @@
 
     icone.onclick = function() {
         modalAjuda.style.display = "none";
+    }
+
+    function fechaModalErro(){
         modalErro.style.display = "none";
     }
 
@@ -95,26 +110,29 @@
     }
 
     const tituloAjuda1 = "Bem vindo(a) ao Robot Toy!";
-    const conteudoAjuda1 = "Eva está livre para passear pela plataforma, pois é impedida de cair e se perder no espaço. " +
-        "Qualquer movimento que resulte em sua queda é evitado, no entanto, " +
-        "outros comandos de movimento válidos são permitidos.";
+    const conteudoAjuda1 = "Esse aplicativo é uma simulação de um robô chamado Eva movendo-se sobre uma plataforma.\n" +
+        "Ela está livre para passear, mas é impedida de cair e se perder no espaço. " +
+        "Qualquer movimento que resulte em sua queda é evitado, apenas comandos que não a coloquem em risco são permitidos.";
 
     const tituloAjuda2 = "Comandos para movimentar Eva:";
     const conteudoAjuda2 =
         "<p>" +
         "<ul>" +
-        "<li>" +
-        "<span class = \"negrito\">Place</span>: indica na plataforma a posição de Eva.\n" +
-        "</li>" +
-        "<ul>" +
-        "<li>" +
-        "Utilize as coordenadas X, Y para indicar sua primeira posição na e " +
-        "Norte(north), Sul(south), Oeste(east) ou Leste(west) para indicar o angula na qual ela andará.\n\n" +
-        "</li>" +
-        "<li>" +
-        "O aplicativo descartará todos os comandos na sequência até que um comando \"Place\" válido seja executado.\n\n" +
-        "</li>" +
-        "</ul>" +
+            "<li>" +
+                "<span class = \"negrito\">Place</span>: indica a posição de Eva na plataforma.\n" +
+            "</li>" +
+            "<ul>" +
+                "<li>" +
+                    "Utilize as coordenadas X, Y para indicar sua primeira posição e " +
+                    "Norte(north), Sul(south), Leste(east) ou Oeste(west) para indicar o ângulo no qual ela andará.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "O aplicativo descartará todos os comandos até que um comando \"Place\" válido seja executado.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "Exemplo: 4,4,east.\n\n" +
+                "</li>" +
+            "</ul>" +
         "</ul>" +
         "</p>";
 
