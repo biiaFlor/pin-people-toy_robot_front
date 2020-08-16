@@ -130,6 +130,9 @@ h3{
   .iconeProximo, .iconeVoltar {
     margin-top: -5% !important;
   }
+  table {
+    width: 90% !important;
+  }
 }
 
 @media screen and (max-device-width: 1024px){
@@ -221,7 +224,7 @@ td,tr,th{
   }
 
   table{
-    width: 50% !important;
+    width: 50%;
     height: 90% !important;
     margin: 2% !important;
     border-collapse: collapse !important;
