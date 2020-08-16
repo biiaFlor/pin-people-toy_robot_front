@@ -43,10 +43,17 @@
   transition: all 1s linear;
 }
 
-/* Modal Content/Box */
-.modal-content {
+.modal-contentAjuda {
   background-color: #353535;
   margin: 5% auto;
+  padding: 2%;
+  border: 1px solid #353535;
+  width: 50%;
+}
+
+.modal-contentErro {
+  background-color: #353535;
+  margin: 10% auto;
   padding: 2%;
   border: 1px solid #353535;
   width: 50%;
@@ -80,7 +87,7 @@
 
 .conteudoModal{
   color: #fff;
-  margin: 5%
+  margin: 5%;
 }
 
 h3{
@@ -111,8 +118,13 @@ h3{
 }
 
 @media screen and (max-device-width: 425px){
-  .modal-content{
+  .modal-contentAjuda{
     width: 90%;
+  }
+  
+  .modal-contentErro{
+    width: 90%;
+    margin: 50% auto;
   }
   
   input, input:hover, input:active{
@@ -137,7 +149,7 @@ h3{
 
 @media screen and (max-device-width: 1024px){
 	img {
-		width: 65%;
+		width: 50%
   }
   td,tr,th{
     border: 1px solid #353535;

@@ -12,7 +12,7 @@
 
     <div class="conteudo">
         <div id="modalAjuda" class="modalAjuda">
-            <div class="modal-content">
+            <div class="modal-contentAjuda">
                 <span class="icone iconeFechar">&times;</span>
                 <h3 id="tituloAjuda"> </h3>
                 <p class="conteudoModal" id="textoAjuda"> </p>
@@ -23,7 +23,7 @@
         <div id = "divErro">
             <% if @error%>
                 <div class="modalErro" id="modalErro">
-                    <div class="modal-content">
+                    <div class="modal-contentErro">
                         <div class="erro" id = "erro">
                             <span class="icone iconeFechar" onclick = "fechaModalErro()">&times;</span>
                             <h3 id="tituloAjuda"><%= @error %></h3>
