@@ -3,28 +3,37 @@
         <p>Robot Toy</p>
         <div class="ajuda">
             <button class="botaoAjuda" id="botaoAjuda" onclick="exibeAjuda()">
+                <div class="tooltip">
                 <span class="material-icons">
                     help_outline
                 </span>
+                    <span class="textoTooltip">Ajuda</span>
+                </div>
             </button>
         </div>
     </div>
 
     <div class="conteudo">
-        <div id="modalAjuda" class="modalAjuda">
-            <div class="modal-content">
+        <div id="modalAjuda" class="modalAjuda modais">
+            <div class="conteudoModais conteudoModalAjuda">
                 <span class="icone iconeFechar">&times;</span>
-                <p>
-                    <h3> Bem vindo(a) ao Robot Toy! </h3>
-                    <p class = "conteudoModal">
-                    Eva está livre para vagar pela superfície demonstrada, mas é impedida de cair e se destruir. 
-                    Qualquer movimento que resulte em sua queda é evitado, no entanto, 
-                    outros comandos de movimento válidos são permitidos.
-                    </p>
-                <span class="material-icons icone iconeProximo">arrow_right_alt</span>
-                </p>
+                <h3 id="tituloAjuda"> </h3>
+                <p class="conteudoModal" id="textoAjuda"> </p>
+                <p id="iconeProximo"></p>
+                <p id="iconeVoltar"></p>
             </div>
-
+        </div>
+        <div id = "divErro">
+            <% if @error%>
+                <div class="modalErro modais" id="modalErro">
+                    <div class="conteudoModais conteudoModalErro">
+                        <div class="erro" id = "erro">
+                            <span class="icone iconeFechar" onclick = "fechaModalErro()">&times;</span>
+                            <h3 id="tituloAjuda"><%= @error %></h3>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
         </div>
         <div class="opcoes">
             <%= form_tag game_path, method: :put do %>
@@ -32,16 +41,9 @@
             <%= hidden_field_tag :current_column, @game.position_column %>
             <%= hidden_field_tag :current_orientation, @game.facing %>
             <%= select_tag :command, options_for_select(game_commands_options), onchange: 'changeCommandSelect(this)' %>
-            <%= text_field_tag :place %>
-            <button class="botaoGO" id="">GO!</button>
+            <%= text_field_tag :place, nil, placeholder: 'Exemplo: 4,4,east' %>
+            <button class="botaoGO">GO!</button>
             <% end %>
-        </div>
-        <div>
-            <div class="erro">
-                <% if @error %>
-                <h3><%= @error %></h3>
-                <% end %>
-            </div>
         </div>
         <table>
             <% @game.board_width.times do |line_index| %>
@@ -67,20 +69,89 @@
         }
     }
 
-    var modal = document.getElementById("modalAjuda");
-    var btn = document.getElementById("botaoAjuda");
+    var modalAjuda = document.getElementById("modalAjuda");
+    var botaoAjuda = document.getElementById("botaoAjuda");
+    var icone = document.getElementsByClassName("icone")[0];
 
-    var span = document.getElementsByClassName("icone")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    span.onclick = function() {
-        modal.style.display = "none";
+    botaoAjuda.onclick = function() {
+        modalAjuda.style.display = "block";
+        iconeAjuda(1);
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    icone.onclick = function() {
+        modalAjuda.style.display = "none";
+    }
+
+    function fechaModalErro(){
+        modalErro.style.display = "none";
+    }
+
+    function iconeAjuda(id) {
+        switch (id) {
+            case 1:
+                document.getElementById("tituloAjuda").innerHTML = tituloAjuda1;
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda1;
+                document.getElementById("iconeProximo").innerHTML = iconeProximo1;
+                document.getElementById("iconeVoltar").innerHTML = "";
+                break;
+
+            case 2:
+                document.getElementById("tituloAjuda").innerHTML = tituloAjuda2;
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda2;
+                document.getElementById("iconeVoltar").innerHTML = iconeVoltar1;
+                document.getElementById("iconeProximo").innerHTML = iconeProximo2;
+                break;
+
+            case 3:
+                document.getElementById("textoAjuda").innerHTML = conteudoAjuda3;
+                document.getElementById("iconeVoltar").innerHTML = iconeVoltar2;
+                document.getElementById("iconeProximo").innerHTML = "";
+                break;
+            default:
+                break;
         }
     }
+
+    const tituloAjuda1 = "Bem vindo(a) ao Robot Toy!";
+    const conteudoAjuda1 = "Esse aplicativo é uma simulação de um robô chamado Eva movendo-se sobre uma plataforma.\n" +
+        "Ela está livre para passear, mas é impedida de cair e se perder no espaço. " +
+        "Qualquer movimento que resulte em sua queda é evitado, apenas comandos que não a coloquem em risco são permitidos.";
+
+    const tituloAjuda2 = "Comandos para movimentar Eva:";
+    const conteudoAjuda2 =
+        "<p>" +
+        "<ul>" +
+            "<li>" +
+                "<span class = \"negrito\">Place</span>: indica a posição de Eva na plataforma.\n" +
+            "</li>" +
+            "<ul>" +
+                "<li>" +
+                    "Utilize as coordenadas X, Y para indicar sua primeira posição e " +
+                    "Norte(north), Sul(south), Leste(east) ou Oeste(west) para indicar o ângulo no qual ela andará.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "O aplicativo descartará todos os comandos até que um comando \"Place\" válido seja executado.\n\n" +
+                "</li>" +
+                "<li>" +
+                    "Exemplo: 4,4,east.\n\n" +
+                "</li>" +
+            "</ul>" +
+        "</ul>" +
+        "</p>";
+
+    const conteudoAjuda3 =
+        "<p>" +
+        "<ul>" +
+        "<li>" +
+        "<span class = \"negrito\">Move</span>: Moverá Eva para a direção que ela estiver voltada.\n\n" +
+        "</li>" +
+        "<li>" +
+        "<span class = \"negrito\">Left e Right</span>: Girará Eva 90 graus na direção especificada sem alterar sua posição.\n\n" +
+        "</li>" +
+        "</ul>" +
+        "</p>";
+    const iconeProximo1 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(2)\">arrow_right_alt</span>";
+    const iconeProximo2 = " <span class=\"material-icons icone iconeProximo\" onclick=\"iconeAjuda(3)\">arrow_right_alt</span>";
+    const iconeVoltar1 = " <span class=\"material-icons icone iconeVoltar\" onclick=\"iconeAjuda(1)\">arrow_right_alt</span>";
+    const iconeVoltar2 = " <span class=\"material-icons icone iconeVoltar\" onclick=\"iconeAjuda(2)\">arrow_right_alt</span>";
 </script>
