@@ -41,7 +41,7 @@
             <%= hidden_field_tag :current_column, @game.position_column %>
             <%= hidden_field_tag :current_orientation, @game.facing %>
             <%= select_tag :command, options_for_select(game_commands_options), onchange: 'changeCommandSelect(this)' %>
-            <%= text_field_tag :place %>
+            <%= text_field_tag :place, nil, placeholder: 'Exemplo: 4,4,east' %>
             <button class="botaoGO" id="">GO!</button>
             <% end %>
         </div>
