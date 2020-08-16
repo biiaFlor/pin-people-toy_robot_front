@@ -24,16 +24,32 @@
   width: 100%; 
   height: 100%; 
   overflow: auto; 
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modalErro {
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5);
+}
+
+.trasicao{
+  transition: all 1s linear;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #353535;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  margin: 5% auto;
+  padding: 2%;
   border: 1px solid #353535;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 50%;
 }
 
 .icone {
@@ -53,6 +69,13 @@
 .iconeProximo{
   padding: 0!important;
     margin-top: -2% !important;
+}
+
+.iconeVoltar{
+  padding: 0!important;
+  margin-top: -2% !important;
+  float: left;
+  transform: scaleX(-1)
 }
 
 .conteudoModal{
@@ -118,9 +141,7 @@ td,tr,th{
 }
 
 .navbar {
-    /* background-color: #2972db; */
     background-color: #424242;
-    /* background-color: transparent; */
     overflow: hidden;
     -webkit-box-shadow: 2px 7px 5px rgba(50, 50, 50, 0.77);
     -moz-box-shadow:    9px 7px 5px rgba(50, 50, 50, 0.77);
@@ -149,9 +170,8 @@ td,tr,th{
 
   .body {
     margin: 0;
-    /* background-image: linear-gradient(to bottom, #598bdc, #fff, #598bdc) !important; */
-    background-image: url("../assets/fundo.jpg");
     /* imagem retirada de: https://wallpapercave.com/w/wp1816252  */
+    background-image: url("../assets/fundo.jpg");
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -159,6 +179,8 @@ td,tr,th{
     display: grid !important;
     min-height: max-content !important;
     height: -webkit-fill-available !important;
+    font-family: cursive;
+    font-size: large;
 }
 
   .cabecalho{
@@ -185,19 +207,19 @@ td,tr,th{
     border-radius: 30px !important;
     border-style: hidden !important; 
     box-shadow: 0px 0px 5px #424242 !important; 
-    /* background-color: transparent; */
     background-color: #424242;
   }
 
   input, input:hover, input:active{
     padding: 0.5%;
     display: inline-block;
-    /* border: 1px solid #ccc; */
     color: #fff;
     background-color: #424242;
     border: 1px solid #424242 !important;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: cursive;
+    font-size: large;
   }
 
   .opcoes{
@@ -207,26 +229,35 @@ td,tr,th{
 
   
 .botaoGO {
-    /* background-color: #17a2b8; */
     background-color: #353535;
     color: white;
     padding: 0.5%;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: cursive;
+    font-size: large;
   }
 
   select {
     padding: 0.5%;
     border: none;
     border-radius: 4px;
-    /* background-color: #fff; */
     background-color: #424242;
-    /* color: #000; */
     color: #fff;
+    font-family: cursive;
+    font-size: large;
   }
 
   .botaoAjuda, .botaoAjuda:active{
     background-color: transparent;
     border: none;
+  }
+
+  li{
+    margin: 2%;
+  }
+
+  li .negrito{
+    font-weight: bold;
   }
