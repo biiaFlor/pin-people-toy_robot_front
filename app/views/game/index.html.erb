@@ -20,6 +20,16 @@
                 <p id="iconeVoltar"></p>
             </div>
         </div>
+        <% if @error%>
+            <div class="modalErro" id="modalErro">
+                <div class="modal-content">
+                    <div class="erro" id = "erro">
+                        <span class="icone iconeFechar">&times;</span>
+                        <h3 id="tituloAjuda"><%= @error %></h3>
+                    </div>
+                </div>
+            </div>
+        <% end %>
         <div class="opcoes">
             <%= form_tag game_path, method: :put do %>
             <%= hidden_field_tag :current_line, @game.position_line %>
@@ -65,7 +75,6 @@
 
     icone.onclick = function() {
         modalAjuda.style.display = "none";
-        modalErro.style.display = "none";
     }
 
     function iconeAjuda(id) {

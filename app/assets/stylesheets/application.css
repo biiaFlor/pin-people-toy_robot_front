@@ -110,6 +110,28 @@ h3{
   transform:rotate(-10deg);
 }
 
+@media screen and (max-device-width: 425px){
+  .modal-content{
+    width: 90%;
+  }
+  
+  input, input:hover, input:active{
+    font-size: initial !important;
+  }
+  
+  .botaoGO {
+    font-size: initial !important;
+  }
+
+  select {
+    font-size: initial !important;
+  }
+
+  .iconeProximo, .iconeVoltar {
+    margin-top: -5% !important;
+  }
+}
+
 @media screen and (max-device-width: 1024px){
 	img {
 		width: 65%;
